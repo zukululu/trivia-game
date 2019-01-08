@@ -62,10 +62,12 @@ const btn = document.querySelector('#click-me')
 const check = document.querySelector('.check-answer')
 const user = document.querySelectorAll('.answer')
 check.addEventListener('click', checkAnswer)
+btn.addEventListener('click', nextQuestion)
 let correctAnswer = ''
 let userAnswer = ''
 let points = 0
-btn.addEventListener('click', nextQuestion)
+
+console.log(questions[0].choices[0])
 
 user.forEach( obj => obj.addEventListener('click', pickAnswer) )
 
@@ -73,13 +75,6 @@ function pickAnswer()
 {
     userAnswer = event.target.innerHTML
     console.log(userAnswer)
-}
-
-function generateChoices(arr)
-{
-    let randomNum = Math.round(Math.random() * 5)
-    return arr.choices[randomNum]
-    
 }
 
 function checkAnswer() 
@@ -130,6 +125,8 @@ function nextQuestion()
     })
     btn.disabled = true
     check.disabled = false
+    for(let i = 0; i < 5; i++)
+        generateChoices()
 
     function getRandomQuestion(arr)
     {
@@ -145,5 +142,14 @@ function nextQuestion()
         }).indexOf(randomQuestion.question)
         discardQuestions.push(discardIndex)
     }
-
+    function generateChoices()
+    {
+        let randomNum = Math.round(Math.random() * 5)
+        let newButton = document.createElement('button')
+        newButton.className = 'answer'
+        newButton.addEventListener('click', pickAnswer)
+        newButton.innerHTML = randomQuestion.choices[randomNum]
+        const box = document.querySelector('.question-box')
+        box.appendChild(newButton)
+    }
 }
