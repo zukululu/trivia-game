@@ -30,11 +30,21 @@ function nextQuestion()
     let randomQuestion = getRandomQuestion(questions)
     let theQuestion = document.querySelector('.question-box')
     theQuestion.innerHTML = randomQuestion.question
+    itemRemove(questions)
+
 
     function getRandomQuestion(arr)
     {
         let randomQuestion = Math.round(Math.random() * 5)
         let question = questions[randomQuestion]
         return question
+    }
+    function itemRemove(arr)
+    {
+        const discardQuestions = questions.map( (obj) =>
+        {
+            return obj.question;
+        }).indexOf(randomQuestion.question)
+        console.log(discardQuestions)
     }
 }
