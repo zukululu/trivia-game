@@ -69,20 +69,20 @@ let points = 0
 let discardChoice = []
 
 document.querySelector('button.check-answer').style.visibility = 'hidden'
-console.log(questions[0].choices[0])
 
 user.forEach( obj => obj.addEventListener('click', pickAnswer) )
 
 function pickAnswer() 
 {
     userAnswer = event.target.innerHTML
-    console.log(userAnswer)
 }
 
 function checkAnswer() 
 {
     if(userAnswer === correctAnswer) {
-        points++ } else {
+        points++ 
+        console.log('+1')
+    } else {
         console.log('WRONG')
     }
     user.forEach( (obj) => {
@@ -90,7 +90,7 @@ function checkAnswer()
     })
     check.disabled = true
     btn.disabled = false
-    console.log(points)
+
 }
 
 function nextQuestion() 
@@ -98,7 +98,6 @@ function nextQuestion()
     document.querySelector('button.check-answer').style.visibility = 'initial'
     let randomQuestion = getRandomQuestion(questions)           //gets question
     correctAnswer = randomQuestion.answer
-    console.log(correctAnswer)
     let questionIndex = questions.map( (obj) =>                 //gets index of question
     {
         return obj.question;
@@ -128,9 +127,9 @@ function nextQuestion()
     })
     btn.disabled = true
     check.disabled = false
-    for(let i = 0; i < 5; i++)
-        generateChoices();
+    generateChoices();
     discardChoice = []
+    console.log(randomQuestion.choices)
 
     function getRandomQuestion(arr)
     {
@@ -147,27 +146,15 @@ function nextQuestion()
         discardQuestions.push(discardIndex)
     }
     function generateChoices()
-    {
-        let randomNum = Math.floor(Math.random() * 5)                       //generating a random num
-        let choiceIndex = randomQuestion.choices.map( (value) =>            //gets index of each choice
+    {   
+        for(let i = 0; i < 5; i++)
         {
-            return value;
-        }).indexOf(randomQuestion.choices[randomNum])
-        if(discardChoice.includes(choiceIndex) === false)                   //checks to see if choice is in discard array
-        {
-            discardChoice.push(choiceIndex)                                 //if not, push num into discard array
-            console.log(discardChoice)
-        } else                                                              //if yes, run again
-        {
-            generateChoices()
+            let newButton = document.createElement('button')                    //create button
+            newButton.className = 'answer'                                      //give button class of .answer
+            newButton.addEventListener('click', pickAnswer)                     //allow button to change user's answer
+            newButton.innerHTML = randomQuestion.choices[i]             //change button's innerhtml to choice
+            const box = document.querySelector('.question-box')                 //select which element to place it inside
+            box.appendChild(newButton)                                          //append button to element
         }
-
-        console.log(choiceIndex)
-        let newButton = document.createElement('button')                    //create button
-        newButton.className = 'answer'                                      //give button class of .answer
-        newButton.addEventListener('click', pickAnswer)                     //allow button to change user's answer
-        newButton.innerHTML = randomQuestion.choices[randomNum]             //change button's innerhtml to choice
-        const box = document.querySelector('.question-box')                 //select which element to place it inside
-        box.appendChild(newButton)                                          //append button to element
     }
 }
