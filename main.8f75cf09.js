@@ -137,19 +137,18 @@ var userAnswer = '';
 var points = 0;
 var discardChoice = [];
 document.querySelector('button.check-answer').style.visibility = 'hidden';
-console.log(questions[0].choices[0]);
 user.forEach(function (obj) {
   return obj.addEventListener('click', pickAnswer);
 });
 
 function pickAnswer() {
   userAnswer = event.target.innerHTML;
-  console.log(userAnswer);
 }
 
 function checkAnswer() {
   if (userAnswer === correctAnswer) {
     points++;
+    console.log('+1');
   } else {
     console.log('WRONG');
   }
@@ -159,7 +158,6 @@ function checkAnswer() {
   });
   check.disabled = true;
   btn.disabled = false;
-  console.log(points);
 }
 
 function nextQuestion() {
@@ -167,7 +165,6 @@ function nextQuestion() {
   var randomQuestion = getRandomQuestion(questions); //gets question
 
   correctAnswer = randomQuestion.answer;
-  console.log(correctAnswer);
   var questionIndex = questions.map(function (obj) //gets index of question
   {
     return obj.question;
@@ -203,12 +200,9 @@ function nextQuestion() {
   });
   btn.disabled = true;
   check.disabled = false;
-
-  for (var i = 0; i < 5; i++) {
-    generateChoices();
-  }
-
+  generateChoices();
   discardChoice = [];
+  console.log(randomQuestion.choices);
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
@@ -224,35 +218,19 @@ function nextQuestion() {
   }
 
   function generateChoices() {
-    var randomNum = Math.floor(Math.random() * 5); //generating a random num
+    for (var i = 0; i < 5; i++) {
+      var newButton = document.createElement('button'); //create button
 
-    var choiceIndex = randomQuestion.choices.map(function (value) //gets index of each choice
-    {
-      return value;
-    }).indexOf(randomQuestion.choices[randomNum]);
+      newButton.className = 'answer'; //give button class of .answer
 
-    if (discardChoice.includes(choiceIndex) === false) //checks to see if choice is in discard array
-      {
-        discardChoice.push(choiceIndex); //if not, push num into discard array
+      newButton.addEventListener('click', pickAnswer); //allow button to change user's answer
 
-        console.log(discardChoice);
-      } else //if yes, run again
-      {
-        generateChoices();
-      }
+      newButton.innerHTML = randomQuestion.choices[i]; //change button's innerhtml to choice
 
-    console.log(choiceIndex);
-    var newButton = document.createElement('button'); //create button
+      var box = document.querySelector('.question-box'); //select which element to place it inside
 
-    newButton.className = 'answer'; //give button class of .answer
-
-    newButton.addEventListener('click', pickAnswer); //allow button to change user's answer
-
-    newButton.innerHTML = randomQuestion.choices[randomNum]; //change button's innerhtml to choice
-
-    var box = document.querySelector('.question-box'); //select which element to place it inside
-
-    box.appendChild(newButton); //append button to element
+      box.appendChild(newButton); //append button to element
+    }
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
