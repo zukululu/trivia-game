@@ -107,27 +107,48 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"../js/main.js":[function(require,module,exports) {
 var questions = [{
   question: 'Question 1',
-  answer: 'hello'
+  answer: 'hello1'
 }, {
   question: 'Question 2',
-  answer: 'hello'
+  answer: 'hello2'
 }, {
   question: 'Question 3',
-  answer: 'hello'
+  answer: 'hello3'
 }, {
   question: 'Question 4',
-  answer: 'hello'
+  answer: 'hello4'
 }, {
   question: 'Question 5',
-  answer: 'hello'
+  answer: 'hello5'
 }];
 var discardQuestions = [];
 var btn = document.querySelector('#click-me');
+var check = document.querySelector('.check-answer');
+var user = document.querySelectorAll('.answer');
+check.addEventListener('click', checkAnswer);
+var correctAnswer = '';
+var userAnswer = '';
+var points = 0;
 btn.addEventListener('click', nextQuestion);
+user.forEach(function (obj) {
+  return obj.addEventListener('click', pickAnswer);
+});
+
+function pickAnswer() {
+  userAnswer = event.target.innerHTML;
+  console.log(userAnswer);
+}
+
+function checkAnswer() {
+  if (userAnswer === correctAnswer) points++;
+  console.log(points);
+}
 
 function nextQuestion() {
   var randomQuestion = getRandomQuestion(questions); //gets question
 
+  correctAnswer = randomQuestion.answer;
+  console.log(correctAnswer);
   var questionIndex = questions.map(function (obj) //gets index of question
   {
     return obj.question;
@@ -136,8 +157,6 @@ function nextQuestion() {
   if (discardQuestions.includes(questionIndex) === true) {
     //checks to see if question has been asked already
     nextQuestion(); //if it has, run the function again
-
-    console.log('hello');
   }
 
   if (discardQuestions.includes(questionIndex) === false) {
@@ -145,7 +164,6 @@ function nextQuestion() {
     var theQuestion = document.querySelector('.question-box'); //if it hasn't, run the rest: display the question
 
     theQuestion.innerHTML = randomQuestion.question;
-    console.log('gj');
   }
 
   if (discardQuestions.length >= 5) //ends the quiz
@@ -166,7 +184,6 @@ function nextQuestion() {
       return obj.question;
     }).indexOf(randomQuestion.question);
     discardQuestions.push(discardIndex);
-    console.log(discardQuestions);
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
