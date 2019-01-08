@@ -37,15 +37,19 @@ function nextQuestion()
         nextQuestion()                                          //if it has, run the function again
         console.log('hello')
     }
-    let theQuestion = document.querySelector('.question-box')   //if it hasn't, run the rest: display the question
-    theQuestion.innerHTML = randomQuestion.question
-    itemRemove(questions)
 
-    // if(discardQuestions.length === 5)
-    // {
-    //     let theQuestion = document.querySelector('.question-box')
-    //     theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
-    // }
+    if(discardQuestions.includes(questionIndex) === false)
+    {
+        itemRemove(questions)
+        let theQuestion = document.querySelector('.question-box')   //if it hasn't, run the rest: display the question
+        theQuestion.innerHTML = randomQuestion.question
+        console.log('gj')
+    }
+    if(discardQuestions.length >= 5)                                 //ends the quiz
+    {
+        let theQuestion = document.querySelector('.question-box')
+        theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
+    }
 
     function getRandomQuestion(arr)
     {
