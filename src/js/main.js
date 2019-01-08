@@ -66,7 +66,9 @@ btn.addEventListener('click', nextQuestion)
 let correctAnswer = ''
 let userAnswer = ''
 let points = 0
+let discardChoice = []
 
+document.querySelector('button.check-answer').style.visibility = 'hidden'
 console.log(questions[0].choices[0])
 
 user.forEach( obj => obj.addEventListener('click', pickAnswer) )
@@ -93,6 +95,7 @@ function checkAnswer()
 
 function nextQuestion() 
 {
+    document.querySelector('button.check-answer').style.visibility = 'initial'
     let randomQuestion = getRandomQuestion(questions)           //gets question
     correctAnswer = randomQuestion.answer
     console.log(correctAnswer)
@@ -126,7 +129,8 @@ function nextQuestion()
     btn.disabled = true
     check.disabled = false
     for(let i = 0; i < 5; i++)
-        generateChoices()
+        generateChoices();
+    discardChoice = []
 
     function getRandomQuestion(arr)
     {
@@ -138,13 +142,29 @@ function nextQuestion()
     {
         const discardIndex = questions.map( (obj) =>
         {
-            return obj.question;
+            return obj.question
         }).indexOf(randomQuestion.question)
         discardQuestions.push(discardIndex)
     }
     function generateChoices()
     {
-        let randomNum = Math.round(Math.random() * 5)
+        let randomNum = Math.floor(Math.random() * 5)
+        let choiceIndex = randomQuestion.choices.map( (value) =>
+        {
+            return value;
+        }).indexOf(randomQuestion.choices[randomNum])
+        if(discardChoice.length >= 5)
+            return
+        if(discardChoice.includes(choiceIndex) === false)
+        {
+            discardChoice.push(choiceIndex)
+            console.log(discardChoice)
+        } else
+        {
+            generateChoices()
+        }
+
+        console.log(choiceIndex)
         let newButton = document.createElement('button')
         newButton.className = 'answer'
         newButton.addEventListener('click', pickAnswer)

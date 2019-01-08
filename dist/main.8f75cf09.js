@@ -135,6 +135,8 @@ btn.addEventListener('click', nextQuestion);
 var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
+var discardChoice = [];
+document.querySelector('button.check-answer').style.visibility = 'hidden';
 console.log(questions[0].choices[0]);
 user.forEach(function (obj) {
   return obj.addEventListener('click', pickAnswer);
@@ -161,6 +163,7 @@ function checkAnswer() {
 }
 
 function nextQuestion() {
+  document.querySelector('button.check-answer').style.visibility = 'initial';
   var randomQuestion = getRandomQuestion(questions); //gets question
 
   correctAnswer = randomQuestion.answer;
@@ -205,6 +208,8 @@ function nextQuestion() {
     generateChoices();
   }
 
+  discardChoice = [];
+
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
     var question = questions[randomQuestion];
@@ -219,7 +224,20 @@ function nextQuestion() {
   }
 
   function generateChoices() {
-    var randomNum = Math.round(Math.random() * 5);
+    var randomNum = Math.floor(Math.random() * 5);
+    var choiceIndex = randomQuestion.choices.map(function (value) {
+      return value;
+    }).indexOf(randomQuestion.choices[randomNum]);
+    if (discardChoice.length >= 5) return;
+
+    if (discardChoice.includes(choiceIndex) === false) {
+      discardChoice.push(choiceIndex);
+      console.log(discardChoice);
+    } else {
+      generateChoices();
+    }
+
+    console.log(choiceIndex);
     var newButton = document.createElement('button');
     newButton.className = 'answer';
     newButton.addEventListener('click', pickAnswer);
