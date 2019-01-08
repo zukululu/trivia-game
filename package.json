@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/zukululu/trivia-game/issues"
   },
-  "homepage": "https://github.com/zukululu/trivia-game#readme"
+  "homepage": "https://github.com/zukululu/trivia-game#readme",
+  "devDependencies": {
+    "pug": "^2.0.3",
+    "sass": "^1.15.3"
+  }
 }
