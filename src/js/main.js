@@ -53,7 +53,7 @@ function nextQuestion()
 
     function getRandomQuestion(arr)
     {
-        let randomQuestion = Math.round(Math.random() * 5)
+        let randomQuestion = Math.floor(Math.random() * 5)
         let question = questions[randomQuestion]
         return question
     }
