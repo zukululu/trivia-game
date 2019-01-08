@@ -131,10 +131,11 @@ var btn = document.querySelector('#click-me');
 var check = document.querySelector('.check-answer');
 var user = document.querySelectorAll('.answer');
 check.addEventListener('click', checkAnswer);
+btn.addEventListener('click', nextQuestion);
 var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
-btn.addEventListener('click', nextQuestion);
+console.log(questions[0].choices[0]);
 user.forEach(function (obj) {
   return obj.addEventListener('click', pickAnswer);
 });
@@ -142,11 +143,6 @@ user.forEach(function (obj) {
 function pickAnswer() {
   userAnswer = event.target.innerHTML;
   console.log(userAnswer);
-}
-
-function generateChoices(arr) {
-  var randomNum = Math.round(Math.random() * 5);
-  return arr.choices[randomNum];
 }
 
 function checkAnswer() {
@@ -205,6 +201,10 @@ function nextQuestion() {
   btn.disabled = true;
   check.disabled = false;
 
+  for (var i = 0; i < 5; i++) {
+    generateChoices();
+  }
+
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
     var question = questions[randomQuestion];
@@ -216,6 +216,16 @@ function nextQuestion() {
       return obj.question;
     }).indexOf(randomQuestion.question);
     discardQuestions.push(discardIndex);
+  }
+
+  function generateChoices() {
+    var randomNum = Math.round(Math.random() * 5);
+    var newButton = document.createElement('button');
+    newButton.className = 'answer';
+    newButton.addEventListener('click', pickAnswer);
+    newButton.innerHTML = randomQuestion.choices[randomNum];
+    var box = document.querySelector('.question-box');
+    box.appendChild(newButton);
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
