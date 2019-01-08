@@ -22,6 +22,7 @@ let questions =
     },
 ]
 
+const discardQuestions = []
 const btn = document.querySelector('#click-me')
 btn.addEventListener('click', nextQuestion)
 
@@ -30,7 +31,8 @@ function nextQuestion()
     let randomQuestion = getRandomQuestion(questions)
     let theQuestion = document.querySelector('.question-box')
     theQuestion.innerHTML = randomQuestion.question
-    itemRemove(questions)
+    // itemRemove(questions)
+    getIndex(questions)
 
 
     function getRandomQuestion(arr)
@@ -39,12 +41,25 @@ function nextQuestion()
         let question = questions[randomQuestion]
         return question
     }
-    function itemRemove(arr)
+    // function itemRemove(arr)
+    // {
+    //     const discardIndex = questions.map( (obj) =>
+    //     {
+    //         return obj.question;
+    //     }).indexOf(randomQuestion.question)
+    //     discardQuestions.push(discardIndex)
+    //     console.log(discardQuestions)
+    // }
+    function getIndex(arr)
     {
-        const discardQuestions = questions.map( (obj) =>
+        for(let i = 0; i< questions.length; i++)
         {
-            return obj.question;
-        }).indexOf(randomQuestion.question)
-        console.log(discardQuestions)
+            const questionIndex = questions.map( (obj) =>
+            {   
+                return obj.question;
+            }).indexOf(randomQuestion.question)
+            console.log(questionIndex)
+        }
     }
+
 }

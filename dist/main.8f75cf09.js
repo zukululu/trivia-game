@@ -121,26 +121,39 @@ var questions = [{
   question: 'Question 5',
   answer: 'hello'
 }];
+var discardQuestions = [];
 var btn = document.querySelector('#click-me');
 btn.addEventListener('click', nextQuestion);
 
 function nextQuestion() {
   var randomQuestion = getRandomQuestion(questions);
   var theQuestion = document.querySelector('.question-box');
-  theQuestion.innerHTML = randomQuestion.question;
-  itemRemove(questions);
+  theQuestion.innerHTML = randomQuestion.question; // itemRemove(questions)
+
+  getIndex(questions);
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.round(Math.random() * 5);
     var question = questions[randomQuestion];
     return question;
-  }
+  } // function itemRemove(arr)
+  // {
+  //     const discardIndex = questions.map( (obj) =>
+  //     {
+  //         return obj.question;
+  //     }).indexOf(randomQuestion.question)
+  //     discardQuestions.push(discardIndex)
+  //     console.log(discardQuestions)
+  // }
 
-  function itemRemove(arr) {
-    var discardQuestions = questions.map(function (obj) {
-      return obj.question;
-    }).indexOf(randomQuestion.question);
-    console.log(discardQuestions);
+
+  function getIndex(arr) {
+    for (var i = 0; i < questions.length; i++) {
+      var questionIndex = questions.map(function (obj) {
+        return obj.question;
+      }).indexOf(randomQuestion.question);
+      console.log(questionIndex);
+    }
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -170,7 +183,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58886" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55676" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
