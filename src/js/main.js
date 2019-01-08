@@ -2,23 +2,58 @@ let questions =
 [
     {
         question: 'Question 1',
-        answer: 'hello1'
+        answer: 'hello1',
+        choices: [
+                    'hello1',
+                    'hello2',
+                    'hello3',
+                    'hello4',
+                    'hello5'
+                 ]
     },
     {
         question: 'Question 2',
-        answer: 'hello2'
+        answer: 'hello2',
+        choices: [
+                    'hello1',
+                    'hello2',
+                    'hello3',
+                    'hello4',
+                    'hello5'
+                 ]
     },
     {
         question: 'Question 3',
-        answer: 'hello3'
+        answer: 'hello3',
+        choices: [
+                    'hello1',
+                    'hello2',
+                    'hello3',
+                    'hello4',
+                    'hello5'
+                 ]
     },
     {
         question: 'Question 4',
-        answer: 'hello4'
+        answer: 'hello4',
+        choices: [
+                    'hello1',
+                    'hello2',
+                    'hello3',
+                    'hello4',
+                    'hello5'
+                 ]
     },
     {
         question: 'Question 5',
-        answer: 'hello5'
+        answer: 'hello5',
+        choices: [
+                    'hello1',
+                    'hello2',
+                    'hello3',
+                    'hello4',
+                    'hello5'
+                 ]
     },
 ]
 
@@ -38,6 +73,13 @@ function pickAnswer()
 {
     userAnswer = event.target.innerHTML
     console.log(userAnswer)
+}
+
+function generateChoices(arr)
+{
+    let randomNum = Math.round(Math.random() * 5)
+    return arr.choices[randomNum]
+    
 }
 
 function checkAnswer() 
@@ -66,7 +108,6 @@ function nextQuestion()
     if(discardQuestions.includes(questionIndex) === true){       //checks to see if question has been asked already
         nextQuestion()                                          //if it has, run the function again
     }
-
     if(discardQuestions.includes(questionIndex) === false)
     {
         itemRemove(questions)
@@ -77,6 +118,12 @@ function nextQuestion()
     {
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
+        check.disabled = true
+        btn.disabled = true
+        user.forEach( (obj) => {
+            obj.disabled = true
+        })
+        return
     }
     user.forEach( (obj) => {
         obj.disabled = false
