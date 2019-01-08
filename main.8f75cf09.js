@@ -126,34 +126,41 @@ var btn = document.querySelector('#click-me');
 btn.addEventListener('click', nextQuestion);
 
 function nextQuestion() {
-  var randomQuestion = getRandomQuestion(questions);
-  var theQuestion = document.querySelector('.question-box');
-  theQuestion.innerHTML = randomQuestion.question; // itemRemove(questions)
+  var randomQuestion = getRandomQuestion(questions); //gets question
 
-  getIndex(questions);
+  var questionIndex = questions.map(function (obj) //gets index of question
+  {
+    return obj.question;
+  }).indexOf(randomQuestion.question);
+
+  if (discardQuestions.includes(questionIndex) === true) {
+    //checks to see if question has been asked already
+    nextQuestion(); //if it has, run the function again
+
+    console.log('hello');
+  }
+
+  var theQuestion = document.querySelector('.question-box'); //if it hasn't, run the rest: display the question
+
+  theQuestion.innerHTML = randomQuestion.question;
+  itemRemove(questions); // if(discardQuestions.length === 5)
+  // {
+  //     let theQuestion = document.querySelector('.question-box')
+  //     theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
+  // }
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.round(Math.random() * 5);
     var question = questions[randomQuestion];
     return question;
-  } // function itemRemove(arr)
-  // {
-  //     const discardIndex = questions.map( (obj) =>
-  //     {
-  //         return obj.question;
-  //     }).indexOf(randomQuestion.question)
-  //     discardQuestions.push(discardIndex)
-  //     console.log(discardQuestions)
-  // }
+  }
 
-
-  function getIndex(arr) {
-    for (var i = 0; i < questions.length; i++) {
-      var questionIndex = questions.map(function (obj) {
-        return obj.question;
-      }).indexOf(randomQuestion.question);
-      console.log(questionIndex);
-    }
+  function itemRemove(arr) {
+    var discardIndex = questions.map(function (obj) {
+      return obj.question;
+    }).indexOf(randomQuestion.question);
+    discardQuestions.push(discardIndex);
+    console.log(discardQuestions);
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
