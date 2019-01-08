@@ -156,7 +156,7 @@ function nextQuestion() {
     }
 
   function getRandomQuestion(arr) {
-    var randomQuestion = Math.round(Math.random() * 5);
+    var randomQuestion = Math.floor(Math.random() * 5);
     var question = questions[randomQuestion];
     return question;
   }
