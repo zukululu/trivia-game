@@ -224,26 +224,35 @@ function nextQuestion() {
   }
 
   function generateChoices() {
-    var randomNum = Math.floor(Math.random() * 5);
-    var choiceIndex = randomQuestion.choices.map(function (value) {
+    var randomNum = Math.floor(Math.random() * 5); //generating a random num
+
+    var choiceIndex = randomQuestion.choices.map(function (value) //gets index of each choice
+    {
       return value;
     }).indexOf(randomQuestion.choices[randomNum]);
-    if (discardChoice.length >= 5) return;
 
-    if (discardChoice.includes(choiceIndex) === false) {
-      discardChoice.push(choiceIndex);
-      console.log(discardChoice);
-    } else {
-      generateChoices();
-    }
+    if (discardChoice.includes(choiceIndex) === false) //checks to see if choice is in discard array
+      {
+        discardChoice.push(choiceIndex); //if not, push num into discard array
+
+        console.log(discardChoice);
+      } else //if yes, run again
+      {
+        generateChoices();
+      }
 
     console.log(choiceIndex);
-    var newButton = document.createElement('button');
-    newButton.className = 'answer';
-    newButton.addEventListener('click', pickAnswer);
-    newButton.innerHTML = randomQuestion.choices[randomNum];
-    var box = document.querySelector('.question-box');
-    box.appendChild(newButton);
+    var newButton = document.createElement('button'); //create button
+
+    newButton.className = 'answer'; //give button class of .answer
+
+    newButton.addEventListener('click', pickAnswer); //allow button to change user's answer
+
+    newButton.innerHTML = randomQuestion.choices[randomNum]; //change button's innerhtml to choice
+
+    var box = document.querySelector('.question-box'); //select which element to place it inside
+
+    box.appendChild(newButton); //append button to element
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
