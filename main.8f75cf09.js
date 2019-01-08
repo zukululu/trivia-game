@@ -128,11 +128,19 @@ function nextQuestion() {
   var randomQuestion = getRandomQuestion(questions);
   var theQuestion = document.querySelector('.question-box');
   theQuestion.innerHTML = randomQuestion.question;
+  itemRemove(questions);
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.round(Math.random() * 5);
     var question = questions[randomQuestion];
     return question;
+  }
+
+  function itemRemove(arr) {
+    var discardQuestions = questions.map(function (obj) {
+      return obj.question;
+    }).indexOf(randomQuestion.question);
+    console.log(discardQuestions);
   }
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
