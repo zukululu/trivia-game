@@ -42,8 +42,15 @@ function pickAnswer()
 
 function checkAnswer() 
 {
-    if(userAnswer === correctAnswer)
-        points++
+    if(userAnswer === correctAnswer) {
+        points++ } else {
+        console.log('WRONG')
+    }
+    user.forEach( (obj) => {
+        obj.disabled = true
+    })
+    check.disabled = true
+    btn.disabled = false
     console.log(points)
 }
 
@@ -71,6 +78,11 @@ function nextQuestion()
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
     }
+    user.forEach( (obj) => {
+        obj.disabled = false
+    })
+    btn.disabled = true
+    check.disabled = false
 
     function getRandomQuestion(arr)
     {

@@ -140,7 +140,17 @@ function pickAnswer() {
 }
 
 function checkAnswer() {
-  if (userAnswer === correctAnswer) points++;
+  if (userAnswer === correctAnswer) {
+    points++;
+  } else {
+    console.log('WRONG');
+  }
+
+  user.forEach(function (obj) {
+    obj.disabled = true;
+  });
+  check.disabled = true;
+  btn.disabled = false;
   console.log(points);
 }
 
@@ -172,6 +182,12 @@ function nextQuestion() {
 
       _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1>";
     }
+
+  user.forEach(function (obj) {
+    obj.disabled = false;
+  });
+  btn.disabled = true;
+  check.disabled = false;
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
@@ -213,7 +229,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54680" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
