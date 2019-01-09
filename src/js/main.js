@@ -1,58 +1,58 @@
 let questions = 
 [
     {
-        question: 'Question 1',
-        answer: 'hello1',
+        question: 'What year was Mario created?' ,
+        answer: '1983',
         choices: [
-                    'hello1',
-                    'hello2',
-                    'hello3',
-                    'hello4',
-                    'hello5'
+                    '1964',
+                    '1973',
+                    '1983',
+                    '1990',
+                    '1953'
                  ]
     },
     {
-        question: 'Question 2',
-        answer: 'hello2',
+        question: `Who is Mario's brother?`,
+        answer: 'Luigi',
         choices: [
-                    'hello1',
-                    'hello2',
-                    'hello3',
-                    'hello4',
-                    'hello5'
+                    'Toad',
+                    'Wario',
+                    'Bowser',
+                    `He doesn't have one!`,
+                    'Luigi'
                  ]
     },
     {
-        question: 'Question 3',
-        answer: 'hello3',
+        question: `Who is Mario's first enemy?`,
+        answer: 'Donkey Kong',
         choices: [
-                    'hello1',
-                    'hello2',
-                    'hello3',
-                    'hello4',
-                    'hello5'
+                    'Donkey Kong',
+                    'Bowser',
+                    'Boo',
+                    'Chomper',
+                    'Toad'
                  ]
     },
     {
-        question: 'Question 4',
-        answer: 'hello4',
+        question: `What was Mario's original name?`,
+        answer: 'Jumpman',
         choices: [
-                    'hello1',
-                    'hello2',
-                    'hello3',
-                    'hello4',
-                    'hello5'
+                    'Mario',
+                    'Jumpman',
+                    'Dario',
+                    'Super Deluxe Hatman Jr.',
+                    'George Washington Carver Jr III'
                  ]
     },
     {
-        question: 'Question 5',
-        answer: 'hello5',
+        question: `Where is Mario from?`,
+        answer: 'Brooklyn, New York',
         choices: [
-                    'hello1',
-                    'hello2',
-                    'hello3',
-                    'hello4',
-                    'hello5'
+                    'Italy',
+                    'Mexico',
+                    'Narnia',
+                    'Brooklyn, New York',
+                    'Mushroom Kingdom'
                  ]
     },
 ]
@@ -70,14 +70,17 @@ let points = 0
 let timeLeft = 10
 
 document.querySelector('button.check-answer').style.visibility = 'hidden'
+user.forEach( value => value.style.visibility = 'hidden')
 
-user.forEach( obj => obj.addEventListener('click', pickAnswer) )
+user.forEach( (obj) => { 
+    obj.addEventListener('click', function pickAnswer() 
+    {
+        userAnswer = event.target.innerHTML
+    }) 
+})
 let countdownTimer = setInterval(countdown, 1000)
 
-function pickAnswer() 
-{
-    userAnswer = event.target.innerHTML
-}
+
 
 function checkAnswer() 
 {
@@ -104,10 +107,7 @@ function countdown()
         theQuestion.innerHTML = `<h1>You lose!</h1>`
         check.disabled = true                                       //disables check answer button
         btn.disabled = true                                         //disables this button
-        user.forEach( (obj) =>                                      //disables choices
-        {
-            obj.disabled = true
-        })
+        user.forEach( value => value.style.visibility = 'hidden')   //hides choices
         timer.style.visibility = 'hidden'
     } else {
         timer.innerHTML = `${timeLeft} seconds remaining!`
@@ -117,9 +117,11 @@ function countdown()
 
 function nextQuestion() 
 {
+    user.forEach( value => value.style.visibility = 'initial')
     document.querySelector('button.check-answer').style.visibility = 'initial'
     let randomQuestion = getRandomQuestion(questions)           //gets question
-    correctAnswer = randomQuestion.answer
+    correctAnswer = randomQuestion.answer    
+    generateChoices();                                              //creates 5 answer choices
     let questionIndex = questions.map( (obj) =>                 //gets index of question
     {
         return obj.question;
@@ -139,10 +141,7 @@ function nextQuestion()
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1>`
         check.disabled = true                                       //disables check answer button
         btn.disabled = true                                         //disables this button
-        user.forEach( (obj) =>                                      //disables choices
-        {
-            obj.disabled = true
-        })
+        user.forEach( value => value.style.visibility = 'hidden')   //hides choices
         return                                                      //ends function
     }
     user.forEach( (obj) => {                                        //enables all buttons
@@ -151,7 +150,7 @@ function nextQuestion()
     timeLeft = 60
     btn.disabled = true                                             //disables this button
     check.disabled = false                                          //enables check answer button
-    generateChoices();                                              //creates 5 answer choices
+
     console.log(discardQuestions)
 
     function getRandomQuestion(arr)
@@ -172,12 +171,7 @@ function nextQuestion()
     {   
         for(let i = 0; i < 5; i++)
         {
-            // let newButton = document.createElement('button')                    //create button
-            // newButton.className = 'answer'                                      //give button class of .answer
-            // newButton.addEventListener('click', pickAnswer)                     //allow button to change user's answer
             user[i].innerHTML = randomQuestion.choices[i]             //change button's innerhtml to choice
-            // const box = document.querySelector('.question-box')                 //select which element to place it inside
-            // box.appendChild(newButton)                                          //append button to element
         }
     }
 }

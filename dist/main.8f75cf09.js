@@ -106,25 +106,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"../js/main.js":[function(require,module,exports) {
 var questions = [{
-  question: 'Question 1',
-  answer: 'hello1',
-  choices: ['hello1', 'hello2', 'hello3', 'hello4', 'hello5']
+  question: 'What year was Mario created?',
+  answer: '1983',
+  choices: ['1964', '1973', '1983', '1990', '1953']
 }, {
-  question: 'Question 2',
-  answer: 'hello2',
-  choices: ['hello1', 'hello2', 'hello3', 'hello4', 'hello5']
+  question: "Who is Mario's brother?",
+  answer: 'Luigi',
+  choices: ['Toad', 'Wario', 'Bowser', "He doesn't have one!", 'Luigi']
 }, {
-  question: 'Question 3',
-  answer: 'hello3',
-  choices: ['hello1', 'hello2', 'hello3', 'hello4', 'hello5']
+  question: "Who is Mario's first enemy?",
+  answer: 'Donkey Kong',
+  choices: ['Donkey Kong', 'Bowser', 'Boo', 'Chomper', 'Toad']
 }, {
-  question: 'Question 4',
-  answer: 'hello4',
-  choices: ['hello1', 'hello2', 'hello3', 'hello4', 'hello5']
+  question: "What was Mario's original name?",
+  answer: 'Jumpman',
+  choices: ['Mario', 'Jumpman', 'Dario', 'Super Deluxe Hatman Jr.', 'George Washington Carver Jr III']
 }, {
-  question: 'Question 5',
-  answer: 'hello5',
-  choices: ['hello1', 'hello2', 'hello3', 'hello4', 'hello5']
+  question: "Where is Mario from?",
+  answer: 'Brooklyn, New York',
+  choices: ['Italy', 'Mexico', 'Narnia', 'Brooklyn, New York', 'Mushroom Kingdom']
 }];
 var discardQuestions = [];
 var btn = document.querySelector('#click-me');
@@ -138,14 +138,15 @@ var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
 document.querySelector('button.check-answer').style.visibility = 'hidden';
+user.forEach(function (value) {
+  return value.style.visibility = 'hidden';
+});
 user.forEach(function (obj) {
-  return obj.addEventListener('click', pickAnswer);
+  obj.addEventListener('click', function pickAnswer() {
+    userAnswer = event.target.innerHTML;
+  });
 });
 var countdownTimer = setInterval(countdown, 1000);
-
-function pickAnswer() {
-  userAnswer = event.target.innerHTML;
-}
 
 function checkAnswer() {
   if (userAnswer === correctAnswer) {
@@ -171,10 +172,10 @@ function countdown() {
 
     btn.disabled = true; //disables this button
 
-    user.forEach(function (obj) //disables choices
-    {
-      obj.disabled = true;
-    });
+    user.forEach(function (value) {
+      return value.style.visibility = 'hidden';
+    }); //hides choices
+
     timer.style.visibility = 'hidden';
   } else {
     timer.innerHTML = "".concat(timeLeft, " seconds remaining!");
@@ -183,10 +184,15 @@ function countdown() {
 }
 
 function nextQuestion() {
+  user.forEach(function (value) {
+    return value.style.visibility = 'initial';
+  });
   document.querySelector('button.check-answer').style.visibility = 'initial';
   var randomQuestion = getRandomQuestion(questions); //gets question
 
   correctAnswer = randomQuestion.answer;
+  generateChoices(); //creates 5 answer choices
+
   var questionIndex = questions.map(function (obj) //gets index of question
   {
     return obj.question;
@@ -213,10 +219,10 @@ function nextQuestion() {
 
       btn.disabled = true; //disables this button
 
-      user.forEach(function (obj) //disables choices
-      {
-        obj.disabled = true;
-      });
+      user.forEach(function (value) {
+        return value.style.visibility = 'hidden';
+      }); //hides choices
+
       return; //ends function
     }
 
@@ -228,8 +234,6 @@ function nextQuestion() {
   btn.disabled = true; //disables this button
 
   check.disabled = false; //enables check answer button
-
-  generateChoices(); //creates 5 answer choices
 
   console.log(discardQuestions);
 
@@ -248,12 +252,7 @@ function nextQuestion() {
 
   function generateChoices() {
     for (var i = 0; i < 5; i++) {
-      // let newButton = document.createElement('button')                    //create button
-      // newButton.className = 'answer'                                      //give button class of .answer
-      // newButton.addEventListener('click', pickAnswer)                     //allow button to change user's answer
       user[i].innerHTML = randomQuestion.choices[i]; //change button's innerhtml to choice
-      // const box = document.querySelector('.question-box')                 //select which element to place it inside
-      // box.appendChild(newButton)                                          //append button to element
     }
   }
 }
