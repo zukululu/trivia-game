@@ -240,7 +240,9 @@ function checkAnswer() {
 }
 
 function countdown() {
-  if (timeLeft === 0) {
+  if (discardQuestions.length >= 5) {
+    return;
+  } else if (timeLeft === 0) {
     clearTimeout(countdownTimer);
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You lose!</h1>";
@@ -290,15 +292,17 @@ function nextQuestion() {
     {
       var _theQuestion = document.querySelector('.question-box');
 
-      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1>";
-      check.disabled = true; //disables check answer button
+      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><br><p>Your score is ".concat(score, "!</p>");
+      check.remove(); //disables check answer button
 
-      btn.disabled = true; //disables this button
+      btn.remove(); //disables this button
 
       user.forEach(function (value) {
         return value.style.visibility = 'hidden';
       }); //hides choices
 
+      timeLeft = 0;
+      timer.style.visibility = 'hidden';
       console.log(score);
       return; //ends function
     }

@@ -1,10 +1,31 @@
 body {
   margin: 0;
   background-color: #efefef;
+  background-image: url("https://wallpapertag.com/wallpaper/full/4/d/9/155959-super-mario-world-background-1920x1080-for-iphone.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .answer {
   width: 200px;
   height: 200px;
-  background-size: contain;
+  background-size: cover;
+  font-size: 22px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  width: 200px;
 }
