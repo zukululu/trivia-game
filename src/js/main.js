@@ -68,6 +68,7 @@ let correctAnswer = ''
 let userAnswer = ''
 let points = 0
 let timeLeft = 10
+let score = 0;
 
 document.querySelector('button.check-answer').style.visibility = 'hidden'
 user.forEach( value => value.style.visibility = 'hidden')
@@ -85,8 +86,8 @@ let countdownTimer = setInterval(countdown, 1000)
 function checkAnswer() 
 {
     if(userAnswer === correctAnswer) {
-        points++ 
-        console.log('+1')
+        score += timeLeft
+        console.log(score)
     } else {
         console.log('WRONG')
     }
@@ -142,6 +143,7 @@ function nextQuestion()
         check.disabled = true                                       //disables check answer button
         btn.disabled = true                                         //disables this button
         user.forEach( value => value.style.visibility = 'hidden')   //hides choices
+        console.log(score)
         return                                                      //ends function
     }
     user.forEach( (obj) => {                                        //enables all buttons
