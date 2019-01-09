@@ -6,23 +6,23 @@ let questions =
         choices: [
             {
                   choiceDesc: '1964',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: '1973',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: '1983',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: '1990',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                 choiceDesc: '1952',
-                choiceImg: ''
+                choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             }
                  ]
     },
@@ -32,19 +32,19 @@ let questions =
         choices: [
             {
                   choiceDesc: 'Toad',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Wario',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Bowser',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Shy Guy',
-                  choiceImg: ''
+                  choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
             },
             {
                 choiceDesc: 'Luigi',
@@ -58,15 +58,15 @@ let questions =
         choices: [
             {
                   choiceDesc: 'Donkey Kong',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Bowser',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Boo',
-                  choiceImg: ''
+                  choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
             },
             {
                   choiceDesc: 'Chomper',
@@ -84,11 +84,11 @@ let questions =
         choices: [
             {
                   choiceDesc: 'Mario',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Jumpman',
-                  choiceImg: ''
+                  choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
             },
             {
                   choiceDesc: 'Dario',
@@ -96,7 +96,7 @@ let questions =
             },
             {
                   choiceDesc: 'Pewdiepie',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                 choiceDesc: 'Mar.io',
@@ -114,7 +114,7 @@ let questions =
             },
             {
                   choiceDesc: 'Mexico',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                   choiceDesc: 'Brooklyn, New York',
@@ -122,7 +122,7 @@ let questions =
             },
             {
                   choiceDesc: 'Narnia',
-                  choiceImg: ''
+                  choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
             },
             {
                 choiceDesc: 'Mushroom Kingdom',
@@ -145,7 +145,7 @@ let points = 0
 let timeLeft = 10
 let score = 0;
 
-document.querySelector('button.check-answer').style.visibility = 'hidden'
+document.querySelector('.check-answer').style.visibility = 'hidden'
 user.forEach( value => value.style.visibility = 'hidden')
 
 user.forEach( (obj) => { 
@@ -195,7 +195,7 @@ function countdown()
 function nextQuestion() 
 {
     user.forEach( value => value.style.visibility = 'initial')
-    document.querySelector('button.check-answer').style.visibility = 'initial'
+    document.querySelector('.check-answer').style.visibility = 'initial'
     let randomQuestion = getRandomQuestion(questions)           //gets question
     correctAnswer = randomQuestion.answer    
     generateChoices();                                              //creates 5 answer choices
@@ -250,6 +250,7 @@ function nextQuestion()
         for(let i = 0; i < 5; i++)
         {
             user[i].innerHTML = randomQuestion.choices[i].choiceDesc             //change button's innerhtml to choice
+            user[i].style.backgroundImage = `url(${randomQuestion.choices[i].choiceImg})`
         }
     }
 }

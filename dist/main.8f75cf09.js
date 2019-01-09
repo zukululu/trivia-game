@@ -110,35 +110,35 @@ var questions = [{
   answer: '1983',
   choices: [{
     choiceDesc: '1964',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: '1973',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: '1983',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: '1990',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: '1952',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }]
 }, {
   question: "Who is Mario's brother?",
   answer: 'Luigi',
   choices: [{
     choiceDesc: 'Toad',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Wario',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Shy Guy',
-    choiceImg: ''
+    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
   }, {
     choiceDesc: 'Luigi',
     choiceImg: ''
@@ -148,13 +148,13 @@ var questions = [{
   answer: 'Donkey Kong',
   choices: [{
     choiceDesc: 'Donkey Kong',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Boo',
-    choiceImg: ''
+    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
   }, {
     choiceDesc: 'Chomper',
     choiceImg: ''
@@ -167,16 +167,16 @@ var questions = [{
   answer: 'Jumpman',
   choices: [{
     choiceDesc: 'Mario',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Jumpman',
-    choiceImg: ''
+    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
   }, {
     choiceDesc: 'Dario',
     choiceImg: ''
   }, {
     choiceDesc: 'Pewdiepie',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Mar.io',
     choiceImg: ''
@@ -189,13 +189,13 @@ var questions = [{
     choiceImg: ''
   }, {
     choiceDesc: 'Mexico',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Brooklyn, New York',
     choiceImg: ''
   }, {
     choiceDesc: 'Narnia',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Mushroom Kingdom',
     choiceImg: ''
@@ -213,7 +213,7 @@ var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
 var score = 0;
-document.querySelector('button.check-answer').style.visibility = 'hidden';
+document.querySelector('.check-answer').style.visibility = 'hidden';
 user.forEach(function (value) {
   return value.style.visibility = 'hidden';
 });
@@ -263,7 +263,7 @@ function nextQuestion() {
   user.forEach(function (value) {
     return value.style.visibility = 'initial';
   });
-  document.querySelector('button.check-answer').style.visibility = 'initial';
+  document.querySelector('.check-answer').style.visibility = 'initial';
   var randomQuestion = getRandomQuestion(questions); //gets question
 
   correctAnswer = randomQuestion.answer;
@@ -330,6 +330,8 @@ function nextQuestion() {
   function generateChoices() {
     for (var i = 0; i < 5; i++) {
       user[i].innerHTML = randomQuestion.choices[i].choiceDesc; //change button's innerhtml to choice
+
+      user[i].style.backgroundImage = "url(".concat(randomQuestion.choices[i].choiceImg, ")");
     }
   }
 }
