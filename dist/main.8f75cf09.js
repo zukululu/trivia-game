@@ -202,10 +202,12 @@ var questions = [{
   }]
 }];
 var discardQuestions = [];
-var btn = document.querySelector('#click-me');
+var start = document.querySelector('.starter');
+var btn = document.querySelector('.next-question');
 var check = document.querySelector('.check-answer');
 var user = document.querySelectorAll('.answer');
 var timer = document.querySelector('.counter');
+start.addEventListener('click', startGame);
 check.addEventListener('click', checkAnswer);
 btn.addEventListener('click', nextQuestion);
 var correctAnswer = '';
@@ -213,7 +215,8 @@ var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
 var score = 0;
-document.querySelector('.check-answer').style.visibility = 'hidden';
+check.style.visibility = 'hidden';
+btn.style.visibility = 'hidden';
 user.forEach(function (value) {
   return value.style.visibility = 'hidden';
 });
@@ -222,7 +225,13 @@ user.forEach(function (obj) {
     userAnswer = event.target.innerHTML;
   });
 });
-var countdownTimer = setInterval(countdown, 1000);
+
+function startGame() {
+  var countdownTimer = setInterval(countdown, 1000);
+  btn.style.visibility = 'visible';
+  nextQuestion();
+  start.remove();
+}
 
 function checkAnswer() {
   if (userAnswer === correctAnswer) {
@@ -240,9 +249,7 @@ function checkAnswer() {
 }
 
 function countdown() {
-  if (discardQuestions.length >= 5) {
-    return;
-  } else if (timeLeft === 0) {
+  if (timeLeft === 0) {
     clearTimeout(countdownTimer);
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You lose!</h1>";

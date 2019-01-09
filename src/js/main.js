@@ -133,10 +133,12 @@ let questions =
 ]
 
 const discardQuestions = []
-let btn = document.querySelector('#click-me')
+let start = document.querySelector('.starter')
+let btn = document.querySelector('.next-question')
 let check = document.querySelector('.check-answer')
 let user = document.querySelectorAll('.answer')
 let timer = document.querySelector('.counter')
+start.addEventListener('click', startGame)
 check.addEventListener('click', checkAnswer)
 btn.addEventListener('click', nextQuestion)
 let correctAnswer = ''
@@ -145,18 +147,22 @@ let points = 0
 let timeLeft = 10
 let score = 0;
 
-document.querySelector('.check-answer').style.visibility = 'hidden'
+check.style.visibility = 'hidden'
+btn.style.visibility = 'hidden'
 user.forEach( value => value.style.visibility = 'hidden')
-
 user.forEach( (obj) => { 
     obj.addEventListener('click', function pickAnswer() 
     {
         userAnswer = event.target.innerHTML
     }) 
 })
-let countdownTimer = setInterval(countdown, 1000)
 
-
+function startGame() {
+    let countdownTimer = setInterval(countdown, 1000)
+    btn.style.visibility = 'visible'
+    nextQuestion()
+    start.remove()
+}
 
 function checkAnswer() 
 {
@@ -177,9 +183,7 @@ function checkAnswer()
 
 function countdown() 
 {
-    if(discardQuestions.length >= 5){
-        return
-    } else if(timeLeft === 0)
+    if(timeLeft === 0)
     {
         clearTimeout(countdownTimer)
         let theQuestion = document.querySelector('.question-box')
