@@ -4,55 +4,130 @@ let questions =
         question: 'What year was Mario created?' ,
         answer: '1983',
         choices: [
-                    '1964',
-                    '1973',
-                    '1983',
-                    '1990',
-                    '1953'
+            {
+                  choiceDesc: '1964',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: '1973',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: '1983',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: '1990',
+                  choiceImg: ''
+            },
+            {
+                choiceDesc: '1952',
+                choiceImg: ''
+            }
                  ]
     },
     {
         question: `Who is Mario's brother?`,
         answer: 'Luigi',
         choices: [
-                    'Toad',
-                    'Wario',
-                    'Bowser',
-                    `He doesn't have one!`,
-                    'Luigi'
+            {
+                  choiceDesc: 'Toad',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Wario',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Bowser',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Shy Guy',
+                  choiceImg: ''
+            },
+            {
+                choiceDesc: 'Luigi',
+                choiceImg: ''
+            }
                  ]
     },
     {
         question: `Who is Mario's first enemy?`,
         answer: 'Donkey Kong',
         choices: [
-                    'Donkey Kong',
-                    'Bowser',
-                    'Boo',
-                    'Chomper',
-                    'Toad'
+            {
+                  choiceDesc: 'Donkey Kong',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Bowser',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Boo',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Chomper',
+                  choiceImg: ''
+            },
+            {
+                choiceDesc: 'Toad',
+                choiceImg: ''
+            }
                  ]
     },
     {
         question: `What was Mario's original name?`,
         answer: 'Jumpman',
         choices: [
-                    'Mario',
-                    'Jumpman',
-                    'Dario',
-                    'Super Deluxe Hatman Jr.',
-                    'George Washington Carver Jr III'
+            {
+                  choiceDesc: 'Mario',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Jumpman',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Dario',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Pewdiepie',
+                  choiceImg: ''
+            },
+            {
+                choiceDesc: 'Mar.io',
+                choiceImg: ''
+            }
                  ]
     },
     {
         question: `Where is Mario from?`,
         answer: 'Brooklyn, New York',
         choices: [
-                    'Italy',
-                    'Mexico',
-                    'Narnia',
-                    'Brooklyn, New York',
-                    'Mushroom Kingdom'
+            {
+                  choiceDesc: 'Italy',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Mexico',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Brooklyn, New York',
+                  choiceImg: ''
+            },
+            {
+                  choiceDesc: 'Narnia',
+                  choiceImg: ''
+            },
+            {
+                choiceDesc: 'Mushroom Kingdom',
+                choiceImg: ''
+            }
                  ]
     },
 ]
@@ -96,6 +171,7 @@ function checkAnswer()
     })
     check.disabled = true
     btn.disabled = false
+
 
 }
 
@@ -173,7 +249,7 @@ function nextQuestion()
     {   
         for(let i = 0; i < 5; i++)
         {
-            user[i].innerHTML = randomQuestion.choices[i]             //change button's innerhtml to choice
+            user[i].innerHTML = randomQuestion.choices[i].choiceDesc             //change button's innerhtml to choice
         }
     }
 }
