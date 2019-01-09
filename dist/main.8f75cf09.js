@@ -110,35 +110,35 @@ var questions = [{
   answer: '1983',
   choices: [{
     choiceDesc: '1964',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: '1973',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: '1983',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: '1990',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: '1952',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }]
 }, {
   question: "Who is Mario's brother?",
   answer: 'Luigi',
   choices: [{
     choiceDesc: 'Toad',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Wario',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Shy Guy',
-    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Luigi',
     choiceImg: ''
@@ -148,13 +148,13 @@ var questions = [{
   answer: 'Donkey Kong',
   choices: [{
     choiceDesc: 'Donkey Kong',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Boo',
-    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Chomper',
     choiceImg: ''
@@ -170,16 +170,16 @@ var questions = [{
     choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
   }, {
     choiceDesc: 'Jumpman',
-    choiceImg: 'https://images.wallpaperscraft.com/image/mario_mushroom_vector_95897_1280x1280.jpg'
+    choiceImg: 'https://sg.fiverrcdn.com/photos/115852140/original/dbe5a04069060fdae78624a5e3746e8bf7fc705d.png?1534507584'
   }, {
     choiceDesc: 'Dario',
-    choiceImg: ''
+    choiceImg: 'https://ae01.alicdn.com/kf/HTB1CvRqOXXXXXbBaXXXq6xXFXXXs/Custom-Canvas-Art-Super-Mario-Poster-Super-Mario-Bros-Wall-Stickers-Mario-Wallpaper-Video-Game-Mural.jpg'
   }, {
     choiceDesc: 'Pewdiepie',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: 'https://vignette.wikia.nocookie.net/nintendo/images/d/d9/Mario_%28New_Super_Mario_Bros._2%29.png/revision/latest?cb=20120709145048&path-prefix=en'
   }, {
     choiceDesc: 'Mar.io',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/central/images/6/63/Mario_Star.png/revision/latest?cb=20150823184403'
   }]
 }, {
   question: "Where is Mario from?",
@@ -189,13 +189,13 @@ var questions = [{
     choiceImg: ''
   }, {
     choiceDesc: 'Mexico',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Brooklyn, New York',
     choiceImg: ''
   }, {
     choiceDesc: 'Narnia',
-    choiceImg: 'https://i.pinimg.com/originals/02/ca/d8/02cad8a78f0dd73ddebb44abb7001da0.jpg'
+    choiceImg: ''
   }, {
     choiceDesc: 'Mushroom Kingdom',
     choiceImg: ''
@@ -236,12 +236,11 @@ function startGame() {
 
 function countdown() {
   if (timeLeft === 0) {
-    clearTimeout(countdownTimer);
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You lose!</h1>";
-    check.disabled = true; //disables check answer button
+    check.remove(); //disables check answer button
 
-    btn.disabled = true; //disables this button
+    btn.remove(); //disables this button
 
     user.forEach(function (value) {
       return value.style.visibility = 'hidden';

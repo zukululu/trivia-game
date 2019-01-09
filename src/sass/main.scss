@@ -9,16 +9,31 @@ body {
     justify-content: center;
     align-items: center;
   }
+  .hero {
+      width: 150px;
+      height: 150px;
+      background-image: url('https://supermarioparty.nintendo.com/assets/img/global/logo-smp.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+  }
+
+  .question-box{
+        font-family: 'Staatliches';
+        font-size: 40px;
+        color: white;
+        margin: 0px;
+  }
 
 .answer {
     width: 200px;
     height: 200px;
     background-size: cover;
-    font-size: 22px;
-    color: white;
+    font-size: 45px;
+    color: black;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: 'Staatliches'
+    font-family: 'Staatliches';
+    background-color: white;
 }
 
 .buttons {
