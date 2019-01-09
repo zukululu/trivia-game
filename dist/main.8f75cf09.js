@@ -130,16 +130,18 @@ var discardQuestions = [];
 var btn = document.querySelector('#click-me');
 var check = document.querySelector('.check-answer');
 var user = document.querySelectorAll('.answer');
+var timer = document.querySelector('.counter');
 check.addEventListener('click', checkAnswer);
 btn.addEventListener('click', nextQuestion);
 var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
-var discardChoice = [];
+var timeLeft = 10;
 document.querySelector('button.check-answer').style.visibility = 'hidden';
 user.forEach(function (obj) {
   return obj.addEventListener('click', pickAnswer);
 });
+var countdownTimer = setInterval(countdown, 1000);
 
 function pickAnswer() {
   userAnswer = event.target.innerHTML;
@@ -158,6 +160,26 @@ function checkAnswer() {
   });
   check.disabled = true;
   btn.disabled = false;
+}
+
+function countdown() {
+  if (timeLeft === 0) {
+    clearTimeout(countdownTimer);
+    var theQuestion = document.querySelector('.question-box');
+    theQuestion.innerHTML = "<h1>You lose!</h1>";
+    check.disabled = true; //disables check answer button
+
+    btn.disabled = true; //disables this button
+
+    user.forEach(function (obj) //disables choices
+    {
+      obj.disabled = true;
+    });
+    timer.style.visibility = 'hidden';
+  } else {
+    timer.innerHTML = "".concat(timeLeft, " seconds remaining!");
+    timeLeft--;
+  }
 }
 
 function nextQuestion() {
@@ -187,22 +209,29 @@ function nextQuestion() {
       var _theQuestion = document.querySelector('.question-box');
 
       _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1>";
-      check.disabled = true;
-      btn.disabled = true;
-      user.forEach(function (obj) {
+      check.disabled = true; //disables check answer button
+
+      btn.disabled = true; //disables this button
+
+      user.forEach(function (obj) //disables choices
+      {
         obj.disabled = true;
       });
-      return;
+      return; //ends function
     }
 
   user.forEach(function (obj) {
+    //enables all buttons
     obj.disabled = false;
   });
-  btn.disabled = true;
-  check.disabled = false;
-  generateChoices();
-  discardChoice = [];
-  console.log(randomQuestion.choices);
+  timeLeft = 60;
+  btn.disabled = true; //disables this button
+
+  check.disabled = false; //enables check answer button
+
+  generateChoices(); //creates 5 answer choices
+
+  console.log(discardQuestions);
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
