@@ -207,14 +207,14 @@ var btn = document.querySelector('.next-question');
 var check = document.querySelector('.check-answer');
 var user = document.querySelectorAll('.answer');
 var timer = document.querySelector('.counter');
-start.addEventListener('click', startGame);
-check.addEventListener('click', checkAnswer);
-btn.addEventListener('click', nextQuestion);
 var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
 var score = 0;
+start.addEventListener('click', startGame);
+check.addEventListener('click', checkAnswer);
+btn.addEventListener('click', nextQuestion);
 check.style.visibility = 'hidden';
 btn.style.visibility = 'hidden';
 user.forEach(function (value) {
@@ -227,25 +227,11 @@ user.forEach(function (obj) {
 });
 
 function startGame() {
-  var countdownTimer = setInterval(countdown, 1000);
-  btn.style.visibility = 'visible';
-  nextQuestion();
   start.remove();
-}
-
-function checkAnswer() {
-  if (userAnswer === correctAnswer) {
-    score += timeLeft;
-    console.log(score);
-  } else {
-    console.log('WRONG');
-  }
-
-  user.forEach(function (obj) {
-    obj.disabled = true;
-  });
-  check.disabled = true;
-  btn.disabled = false;
+  setInterval(countdown, 1000);
+  btn.style.visibility = 'visible';
+  btn.style.opacity = 0.5;
+  nextQuestion();
 }
 
 function countdown() {
@@ -268,11 +254,31 @@ function countdown() {
   }
 }
 
+function checkAnswer() {
+  if (userAnswer === correctAnswer) {
+    score += timeLeft;
+    console.log(score);
+  } else {
+    console.log('WRONG');
+  }
+
+  user.forEach(function (obj) {
+    obj.style.opacity = 0.5;
+    obj.disabled = true;
+  });
+  check.style.opacity = 0.5;
+  btn.style.opacity = 1;
+  check.disabled = true;
+  btn.disabled = false;
+}
+
 function nextQuestion() {
   user.forEach(function (value) {
-    return value.style.visibility = 'initial';
+    value.style.visibility = 'visible';
+    value.style.opacity = 1;
   });
-  document.querySelector('.check-answer').style.visibility = 'initial';
+  check.style.visibility = 'visible';
+  check.style.opacity = 1;
   var randomQuestion = getRandomQuestion(questions); //gets question
 
   correctAnswer = randomQuestion.answer;
@@ -309,16 +315,19 @@ function nextQuestion() {
       }); //hides choices
 
       timeLeft = 0;
-      timer.style.visibility = 'hidden';
+      timer.remove();
       console.log(score);
       return; //ends function
     }
 
   user.forEach(function (obj) {
     //enables all buttons
+    obj.style.opacity = 1;
     obj.disabled = false;
   });
-  timeLeft = 60;
+  timeLeft = 10;
+  btn.style.opacity = 0.5;
+  check.style.opacity = 1;
   btn.disabled = true; //disables this button
 
   check.disabled = false; //enables check answer button
