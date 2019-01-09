@@ -110,57 +110,57 @@ var questions = [{
   answer: '1983',
   choices: [{
     choiceDesc: '1964',
-    choiceImg: ''
+    choiceImg: 'https://art.pixilart.com/5000fb0e1d2c04e.png'
   }, {
     choiceDesc: '1973',
-    choiceImg: ''
+    choiceImg: 'https://i.imgur.com/8nkj3Jm.gif'
   }, {
     choiceDesc: '1983',
-    choiceImg: ''
+    choiceImg: 'https://images-na.ssl-images-amazon.com/images/I/61uPeYjWZmL._SY550_.jpg'
   }, {
     choiceDesc: '1990',
-    choiceImg: ''
+    choiceImg: 'https://pngimage.net/wp-content/uploads/2018/06/mario-bros-pixel-png-6.png'
   }, {
     choiceDesc: '1952',
-    choiceImg: ''
+    choiceImg: 'https://ih0.redbubble.net/image.423157982.7742/flat,550x550,075,f.u6.jpg'
   }]
 }, {
   question: "Who is Mario's brother?",
   answer: 'Luigi',
   choices: [{
     choiceDesc: 'Toad',
-    choiceImg: ''
+    choiceImg: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Toad_3D_Land.png/220px-Toad_3D_Land.png'
   }, {
     choiceDesc: 'Wario',
-    choiceImg: ''
+    choiceImg: 'https://aff5fa4925746bf9c161-fb36f18ca122a30f6899af8eef8fa39b.ssl.cf5.rackcdn.com/images/Masthead_Wario.5fb367ea.png'
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/mario/images/1/1e/Bowser_%28New_3ds_verison%29.png/revision/latest?cb=20180129223045'
   }, {
     choiceDesc: 'Shy Guy',
-    choiceImg: ''
+    choiceImg: 'https://www.mariowiki.com/images/thumb/7/70/ShyGuyCTTT_artwork.png/200px-ShyGuyCTTT_artwork.png'
   }, {
     choiceDesc: 'Luigi',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/wii/images/d/d7/406px-Luigi_Artwork_-_Super_Mario_3D_World.png/revision/latest?cb=20140121131452'
   }]
 }, {
   question: "Who is Mario's first enemy?",
   answer: 'Donkey Kong',
   choices: [{
     choiceDesc: 'Donkey Kong',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/fantendo/images/b/b5/SuperMarioParty_DonkeyKong.png/revision/latest?cb=20181005213911'
   }, {
     choiceDesc: 'Bowser',
-    choiceImg: ''
+    choiceImg: 'https://www.mariowiki.com/images/thumb/e/ea/SMO_Art_-_Bowser.png/240px-SMO_Art_-_Bowser.png'
   }, {
     choiceDesc: 'Boo',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/nintendo/images/8/83/King_boo.png/revision/latest?cb=20150419133611&path-prefix=en'
   }, {
     choiceDesc: 'Chomper',
-    choiceImg: ''
+    choiceImg: 'https://www.mariowiki.com/images/thumb/a/a9/ChainChompMP8.png/300px-ChainChompMP8.png'
   }, {
     choiceDesc: 'Toad',
-    choiceImg: ''
+    choiceImg: 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Toad_3D_Land.png/220px-Toad_3D_Land.png'
   }]
 }, {
   question: "What was Mario's original name?",
@@ -186,19 +186,19 @@ var questions = [{
   answer: 'Brooklyn, New York',
   choices: [{
     choiceDesc: 'Italy',
-    choiceImg: ''
+    choiceImg: 'https://www.domondonart.com/wp-content/uploads/2016/06/VeniceItaly-restaurant-600x600.jpg'
   }, {
     choiceDesc: 'Mexico',
-    choiceImg: ''
+    choiceImg: 'https://ei.marketwatch.com/Multimedia/2017/07/12/Photos/ZH/MW-FQ172_mexico_20170712201825_ZH.jpg?uuid=c969d03c-6760-11e7-a0ec-9c8e992d421e'
   }, {
     choiceDesc: 'Brooklyn, New York',
-    choiceImg: ''
+    choiceImg: 'https://gotraveltipster.com/wp-content/uploads/2018/04/IMG_0300-web.jpg'
   }, {
     choiceDesc: 'Narnia',
-    choiceImg: ''
+    choiceImg: 'https://i.pinimg.com/originals/9e/e1/7d/9ee17d26c8d840c1ee9f57a18157a6de.jpg'
   }, {
     choiceDesc: 'Mushroom Kingdom',
-    choiceImg: ''
+    choiceImg: 'https://vignette.wikia.nocookie.net/everything-super-mario-odyssey/images/4/4b/Mushroom_kingdom_odyssey_3_by_banjo2015-dbt59q2.jpg/revision/latest?cb=20180112180041'
   }]
 }];
 var discardQuestions = [];
@@ -212,6 +212,7 @@ var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
 var score = 0;
+var countdownTimer;
 start.addEventListener('click', startGame);
 check.addEventListener('click', checkAnswer);
 btn.addEventListener('click', nextQuestion);
@@ -228,7 +229,7 @@ user.forEach(function (obj) {
 
 function startGame() {
   start.remove();
-  setInterval(countdown, 1000);
+  countdownTimer = setInterval(countdown, 1000);
   btn.style.visibility = 'visible';
   btn.style.opacity = 0.5;
   nextQuestion();
@@ -248,7 +249,8 @@ function countdown() {
 
     timer.style.visibility = 'hidden';
   } else {
-    timer.innerHTML = "".concat(timeLeft, " seconds remaining!");
+    console.log("Time left: ".concat(timeLeft));
+    timer.innerHTML = "Time left: ".concat(timeLeft);
     timeLeft--;
   }
 }
@@ -302,6 +304,8 @@ function nextQuestion() {
 
   if (discardQuestions.length >= 5) //ends the quiz
     {
+      clearTimeout(countdownTimer);
+
       var _theQuestion = document.querySelector('.question-box');
 
       _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><br><p>Your score is ".concat(score, "!</p>");
@@ -309,13 +313,12 @@ function nextQuestion() {
 
       btn.remove(); //disables this button
 
+      timeLeft = 0;
+      timer.remove();
       user.forEach(function (value) {
         return value.style.visibility = 'hidden';
       }); //hides choices
 
-      timeLeft = 0;
-      timer.remove();
-      console.log(score);
       return; //ends function
     }
 
@@ -324,14 +327,13 @@ function nextQuestion() {
     obj.style.opacity = 1;
     obj.disabled = false;
   });
+  userAnswer = '';
   timeLeft = 10;
   btn.style.opacity = 0.5;
   check.style.opacity = 1;
   btn.disabled = true; //disables this button
 
   check.disabled = false; //enables check answer button
-
-  console.log(discardQuestions);
 
   function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random() * 5);
