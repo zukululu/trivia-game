@@ -248,17 +248,12 @@ function nextQuestion() {
 
   function generateChoices() {
     for (var i = 0; i < 5; i++) {
-      var newButton = document.createElement('button'); //create button
-
-      newButton.className = 'answer'; //give button class of .answer
-
-      newButton.addEventListener('click', pickAnswer); //allow button to change user's answer
-
-      newButton.innerHTML = randomQuestion.choices[i]; //change button's innerhtml to choice
-
-      var box = document.querySelector('.question-box'); //select which element to place it inside
-
-      box.appendChild(newButton); //append button to element
+      // let newButton = document.createElement('button')                    //create button
+      // newButton.className = 'answer'                                      //give button class of .answer
+      // newButton.addEventListener('click', pickAnswer)                     //allow button to change user's answer
+      user[i].innerHTML = randomQuestion.choices[i]; //change button's innerhtml to choice
+      // const box = document.querySelector('.question-box')                 //select which element to place it inside
+      // box.appendChild(newButton)                                          //append button to element
     }
   }
 }
