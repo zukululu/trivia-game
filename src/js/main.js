@@ -138,14 +138,14 @@ let btn = document.querySelector('.next-question')
 let check = document.querySelector('.check-answer')
 let user = document.querySelectorAll('.answer')
 let timer = document.querySelector('.counter')
-start.addEventListener('click', startGame)
-check.addEventListener('click', checkAnswer)
-btn.addEventListener('click', nextQuestion)
 let correctAnswer = ''
 let userAnswer = ''
 let points = 0
 let timeLeft = 10
 let score = 0;
+start.addEventListener('click', startGame)
+check.addEventListener('click', checkAnswer)
+btn.addEventListener('click', nextQuestion)
 
 check.style.visibility = 'hidden'
 btn.style.visibility = 'hidden'
@@ -158,27 +158,11 @@ user.forEach( (obj) => {
 })
 
 function startGame() {
-    let countdownTimer = setInterval(countdown, 1000)
-    btn.style.visibility = 'visible'
-    nextQuestion()
     start.remove()
-}
-
-function checkAnswer() 
-{
-    if(userAnswer === correctAnswer) {
-        score += timeLeft
-        console.log(score)
-    } else {
-        console.log('WRONG')
-    }
-    user.forEach( (obj) => {
-        obj.disabled = true
-    })
-    check.disabled = true
-    btn.disabled = false
-
-
+    setInterval(countdown, 1000)
+    btn.style.visibility = 'visible'
+    btn.style.opacity = 0.5
+    nextQuestion()
 }
 
 function countdown() 
@@ -198,10 +182,35 @@ function countdown()
     }
 }
 
+function checkAnswer() 
+{
+    if(userAnswer === correctAnswer) {
+        score += timeLeft
+        console.log(score)
+    } else {
+        console.log('WRONG')
+    }
+    user.forEach( (obj) => {
+        obj.style.opacity = 0.5
+        obj.disabled = true
+    })
+    check.style.opacity = 0.5
+    btn.style.opacity = 1
+    check.disabled = true
+    btn.disabled = false
+
+
+}
+
 function nextQuestion() 
 {
-    user.forEach( value => value.style.visibility = 'initial')
-    document.querySelector('.check-answer').style.visibility = 'initial'
+    user.forEach( (value) => {
+        value.style.visibility = 'visible'
+        value.style.opacity = 1
+    })
+    check.style.visibility = 'visible'
+    check.style.opacity = 1
+
     let randomQuestion = getRandomQuestion(questions)           //gets question
     correctAnswer = randomQuestion.answer    
     generateChoices();                                              //creates 5 answer choices
@@ -226,14 +235,17 @@ function nextQuestion()
         btn.remove()                                         //disables this button
         user.forEach( value => value.style.visibility = 'hidden')   //hides choices
         timeLeft = 0;
-        timer.style.visibility = 'hidden'
+        timer.remove()
         console.log(score)
         return                                                      //ends function
     }
     user.forEach( (obj) => {                                        //enables all buttons
+        obj.style.opacity = 1
         obj.disabled = false
     })
-    timeLeft = 60
+    timeLeft = 10
+    btn.style.opacity = 0.5
+    check.style.opacity = 1
     btn.disabled = true                                             //disables this button
     check.disabled = false                                          //enables check answer button
 
