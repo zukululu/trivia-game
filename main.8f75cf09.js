@@ -137,6 +137,7 @@ var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
 var timeLeft = 10;
+var score = 0;
 document.querySelector('button.check-answer').style.visibility = 'hidden';
 user.forEach(function (value) {
   return value.style.visibility = 'hidden';
@@ -150,8 +151,8 @@ var countdownTimer = setInterval(countdown, 1000);
 
 function checkAnswer() {
   if (userAnswer === correctAnswer) {
-    points++;
-    console.log('+1');
+    score += timeLeft;
+    console.log(score);
   } else {
     console.log('WRONG');
   }
@@ -223,6 +224,7 @@ function nextQuestion() {
         return value.style.visibility = 'hidden';
       }); //hides choices
 
+      console.log(score);
       return; //ends function
     }
 
