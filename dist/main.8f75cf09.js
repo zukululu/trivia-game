@@ -202,6 +202,7 @@ var questions = [{
   }]
 }];
 var discardQuestions = [];
+var characterSprite = document.querySelector('.mario');
 var start = document.querySelector('.starter');
 var btn = document.querySelector('.next-question');
 var check = document.querySelector('.check-answer');
@@ -228,17 +229,26 @@ user.forEach(function (obj) {
 });
 
 function startGame() {
-  start.remove();
+  console.log(characterSprite);
+  start.style.visibility = 'hidden';
+  characterSprite.style.marginTop = '111px';
   countdownTimer = setInterval(countdown, 1000);
   btn.style.visibility = 'visible';
   btn.style.opacity = 0.5;
   nextQuestion();
+
+  function dropMario() {
+    while (characterSprite.style.marginTop !== '49px') {
+      characterSprite.style.marginTop -= 6.5;
+    }
+  }
 }
 
 function countdown() {
   if (timeLeft === 0) {
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You lose!</h1>";
+    characterSprite.style.marginTop = '131px';
     check.remove(); //disables check answer button
 
     btn.remove(); //disables this button
@@ -305,10 +315,11 @@ function nextQuestion() {
   if (discardQuestions.length >= 5) //ends the quiz
     {
       clearTimeout(countdownTimer);
+      characterSprite.style.marginTop = '19px';
 
       var _theQuestion = document.querySelector('.question-box');
 
-      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><br><p>Your score is ".concat(score, "!</p>");
+      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p>Your score is ".concat(score, "!</p>");
       check.remove(); //disables check answer button
 
       btn.remove(); //disables this button
@@ -328,7 +339,7 @@ function nextQuestion() {
     obj.disabled = false;
   });
   userAnswer = '';
-  timeLeft = 10;
+  timeLeft = 60;
   btn.style.opacity = 0.5;
   check.style.opacity = 1;
   btn.disabled = true; //disables this button
@@ -383,7 +394,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54680" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65018" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

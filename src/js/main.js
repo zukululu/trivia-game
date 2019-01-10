@@ -133,6 +133,7 @@ let questions =
 ]
 
 const discardQuestions = []
+let characterSprite = document.querySelector('.mario')
 let start = document.querySelector('.starter')
 let btn = document.querySelector('.next-question')
 let check = document.querySelector('.check-answer')
@@ -143,7 +144,7 @@ let userAnswer = ''
 let points = 0
 let timeLeft = 10
 let score = 0;
-let countdownTimer;
+let countdownTimer
 start.addEventListener('click', startGame)
 check.addEventListener('click', checkAnswer)
 btn.addEventListener('click', nextQuestion)
@@ -159,11 +160,20 @@ user.forEach( (obj) => {
 })
 
 function startGame() {
-    start.remove()
+    console.log(characterSprite)
+    start.style.visibility = 'hidden'
+    characterSprite.style.marginTop = '111px'
     countdownTimer = setInterval(countdown, 1000)
     btn.style.visibility = 'visible'
     btn.style.opacity = 0.5
     nextQuestion()
+    function dropMario() 
+    {
+        while(characterSprite.style.marginTop !== '49px')
+        {
+            characterSprite.style.marginTop -= 6.5
+        }
+    }
 }
 
 function countdown() 
@@ -172,6 +182,7 @@ function countdown()
     {
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You lose!</h1>`
+        characterSprite.style.marginTop = '131px'
         check.remove()                                       //disables check answer button
         btn.remove()                                         //disables this button
         user.forEach( value => value.style.visibility = 'hidden')   //hides choices
@@ -229,8 +240,9 @@ function nextQuestion()
     if(discardQuestions.length >= 5)                                 //ends the quiz
     {
         clearTimeout(countdownTimer)
+        characterSprite.style.marginTop = '19px'
         let theQuestion = document.querySelector('.question-box')
-        theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><br><p>Your score is ${score}!</p>`
+        theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p>Your score is ${score}!</p>`
         check.remove()                                       //disables check answer button
         btn.remove()                                         //disables this button
         timeLeft = 0
@@ -243,7 +255,7 @@ function nextQuestion()
         obj.disabled = false
     })
     userAnswer = ''
-    timeLeft = 10
+    timeLeft = 60
     btn.style.opacity = 0.5
     check.style.opacity = 1
     btn.disabled = true                                             //disables this button
