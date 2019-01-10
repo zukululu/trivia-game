@@ -4,6 +4,7 @@ body {
   background-image: url("https://wallpapertag.com/wallpaper/full/4/d/9/155959-super-mario-world-background-1920x1080-for-iphone.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .hero {
@@ -21,12 +22,17 @@ h1 {
 
 .question-box {
   font-family: "Staatliches";
-  font-size: 40px;
+  font-size: 55px;
   color: white;
   margin: 0px;
 }
 .question-box .score {
   color: #eb001d;
+}
+
+.counter {
+  font-family: "Staatliches";
+  font-size: 30px;
 }
 
 .answer {
@@ -69,11 +75,6 @@ button {
   bottom: 0px;
   width: 100%;
   height: 100px;
-}
-
-.walking:hover {
-  transition: transform 60s;
-  transform: translateX(1300px);
 }
 
 .mario {
