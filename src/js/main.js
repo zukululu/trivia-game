@@ -160,20 +160,16 @@ user.forEach( (obj) => {
 })
 
 function startGame() {
-    console.log(characterSprite)
     start.style.visibility = 'hidden'
+    characterSprite.style.height = '100px'
+    characterSprite.style.width = '100px'
+    characterSprite.style.backgroundImage = `url('https://i.gifer.com/origin/ac/acf3abb6da430dd78cc99f925bb52d49_w200.gif')`
     characterSprite.style.marginTop = '111px'
+    characterSprite.style.marginLeft = '-20px'
     countdownTimer = setInterval(countdown, 1000)
     btn.style.visibility = 'visible'
     btn.style.opacity = 0.5
     nextQuestion()
-    function dropMario() 
-    {
-        while(characterSprite.style.marginTop !== '49px')
-        {
-            characterSprite.style.marginTop -= 6.5
-        }
-    }
 }
 
 function countdown() 
@@ -240,7 +236,7 @@ function nextQuestion()
     if(discardQuestions.length >= 5)                                 //ends the quiz
     {
         clearTimeout(countdownTimer)
-        characterSprite.style.marginTop = '19px'
+        characterSprite.style.marginTop = '22px'
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p>Your score is ${score}!</p>`
         check.remove()                                       //disables check answer button
