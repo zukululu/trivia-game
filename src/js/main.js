@@ -162,7 +162,7 @@ user.forEach( (obj) => {
 function startGame() {
     console.log(characterSprite)
     start.style.visibility = 'hidden'
-    characterSprite.style.marginTop = '111px'
+    characterSprite.style.marginTop = '5px'
     characterSprite.style.height = '100px'
     characterSprite.style.width = '100px'
     characterSprite.style.backgroundImage = `url('https://i.gifer.com/origin/ac/acf3abb6da430dd78cc99f925bb52d49_w200.gif')`
@@ -178,7 +178,6 @@ function countdown()
     {
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You lose!</h1>`
-        characterSprite.style.marginTop = '131px'
         check.remove()                                       //disables check answer button
         btn.remove()                                         //disables this button
         user.forEach( value => value.style.visibility = 'hidden')   //hides choices
@@ -236,7 +235,6 @@ function nextQuestion()
     if(discardQuestions.length >= 5)                                 //ends the quiz
     {
         clearTimeout(countdownTimer)
-        characterSprite.style.marginTop = '19px'
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p>Your score is ${score}!</p>`
         check.remove()                                       //disables check answer button
