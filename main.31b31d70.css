@@ -4,7 +4,6 @@ body {
   background-image: url("https://wallpapertag.com/wallpaper/full/4/d/9/155959-super-mario-world-background-1920x1080-for-iphone.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .hero {
@@ -25,6 +24,9 @@ h1 {
   font-size: 40px;
   color: white;
   margin: 0px;
+}
+.question-box .score {
+  color: #eb001d;
 }
 
 .answer {
@@ -56,7 +58,7 @@ h1 {
 
 button {
   width: 200px;
-  background-color: red;
+  background-color: #eb001d;
   color: white;
   font-family: "Staatliches";
   font-size: 30px;
@@ -67,12 +69,14 @@ button {
   bottom: 0px;
   width: 100%;
   height: 100px;
+}
+
+.walking:hover {
   transition: transform 60s;
-  transform: translateX(1400px);
+  transform: translateX(1300px);
 }
 
 .mario {
-  float: left;
   height: 80px;
   width: 80px;
   background-image: url("https://vignette.wikia.nocookie.net/lawl-stadium/images/4/4d/8-Bit_Mario.png/revision/latest?cb=20130907061200");
