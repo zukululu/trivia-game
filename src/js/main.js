@@ -139,10 +139,11 @@ let btn = document.querySelector('.next-question')
 let check = document.querySelector('.check-answer')
 let user = document.querySelectorAll('.answer')
 let timer = document.querySelector('.counter')
+let walk = document.querySelector('.walkway')
 let correctAnswer = ''
 let userAnswer = ''
 let points = 0
-let timeLeft = 10
+let timeLeft = 60
 let score = 0;
 let countdownTimer
 start.addEventListener('click', startGame)
@@ -160,7 +161,8 @@ user.forEach( (obj) => {
 })
 
 function startGame() {
-    console.log(characterSprite)
+    // walk.classList.add = 'walking'
+    // console.log(walk.classList)
     start.style.visibility = 'hidden'
     characterSprite.style.marginTop = '5px'
     characterSprite.style.height = '100px'
@@ -236,7 +238,7 @@ function nextQuestion()
     {
         clearTimeout(countdownTimer)
         let theQuestion = document.querySelector('.question-box')
-        theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p>Your score is ${score}!</p>`
+        theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p class='score'>Your score is ${score}!</p>`
         check.remove()                                       //disables check answer button
         btn.remove()                                         //disables this button
         timeLeft = 0
@@ -249,7 +251,6 @@ function nextQuestion()
         obj.disabled = false
     })
     userAnswer = ''
-    timeLeft = 60
     btn.style.opacity = 0.5
     check.style.opacity = 1
     btn.disabled = true                                             //disables this button

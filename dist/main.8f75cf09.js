@@ -208,10 +208,11 @@ var btn = document.querySelector('.next-question');
 var check = document.querySelector('.check-answer');
 var user = document.querySelectorAll('.answer');
 var timer = document.querySelector('.counter');
+var walk = document.querySelector('.walkway');
 var correctAnswer = '';
 var userAnswer = '';
 var points = 0;
-var timeLeft = 10;
+var timeLeft = 60;
 var score = 0;
 var countdownTimer;
 start.addEventListener('click', startGame);
@@ -229,7 +230,8 @@ user.forEach(function (obj) {
 });
 
 function startGame() {
-  console.log(characterSprite);
+  // walk.classList.add = 'walking'
+  // console.log(walk.classList)
   start.style.visibility = 'hidden';
   characterSprite.style.marginTop = '5px';
   characterSprite.style.height = '100px';
@@ -314,7 +316,7 @@ function nextQuestion() {
 
       var _theQuestion = document.querySelector('.question-box');
 
-      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p>Your score is ".concat(score, "!</p>");
+      _theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p class='score'>Your score is ".concat(score, "!</p>");
       check.remove(); //disables check answer button
 
       btn.remove(); //disables this button
@@ -334,7 +336,6 @@ function nextQuestion() {
     obj.disabled = false;
   });
   userAnswer = '';
-  timeLeft = 60;
   btn.style.opacity = 0.5;
   check.style.opacity = 1;
   btn.disabled = true; //disables this button
