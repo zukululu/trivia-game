@@ -231,7 +231,7 @@ user.forEach(function (obj) {
 function startGame() {
   console.log(characterSprite);
   start.style.visibility = 'hidden';
-  characterSprite.style.marginTop = '111px';
+  characterSprite.style.marginTop = '5px';
   characterSprite.style.height = '100px';
   characterSprite.style.width = '100px';
   characterSprite.style.backgroundImage = "url('https://i.gifer.com/origin/ac/acf3abb6da430dd78cc99f925bb52d49_w200.gif')";
@@ -245,7 +245,6 @@ function countdown() {
   if (timeLeft === 0) {
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You lose!</h1>";
-    characterSprite.style.marginTop = '131px';
     check.remove(); //disables check answer button
 
     btn.remove(); //disables this button
@@ -312,7 +311,6 @@ function nextQuestion() {
   if (discardQuestions.length >= 5) //ends the quiz
     {
       clearTimeout(countdownTimer);
-      characterSprite.style.marginTop = '19px';
 
       var _theQuestion = document.querySelector('.question-box');
 
@@ -391,7 +389,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60260" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
