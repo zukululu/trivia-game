@@ -336,7 +336,6 @@ function countdown() {
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p class='score'>Your score is ".concat(score, "!</p>");
     clearTimeout(countdownTimer);
-    start.style.visbility = 'visible';
     timer.remove();
     check.remove(); //disables check answer button
 
@@ -429,7 +428,6 @@ function nextQuestion() {
   btn.style.opacity = 0.5;
   check.style.opacity = 1;
   btn.disabled = true; //disables this button
-  start.style.visibility = 'visible';
   check.disabled = false; //enables check answer button
 
   function getRandomQuestion(arr) {
