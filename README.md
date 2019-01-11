@@ -20,6 +20,8 @@ This trivia is a test to see the user's knowledge of Nintendo's popular characte
 - Buttons disappear and reappear based on the sequence of the game.
 - Buttons and choices will fade or reappear based on sequence of the game.
   - Prevents user from scoring multiple points by repeatedly pressing the check answer button.
+### Features to Add
+- Display whether the answer is correct or not.
   
 ## Technologies Used
 - HTML
