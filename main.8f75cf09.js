@@ -306,8 +306,7 @@ var timer = document.querySelector('.counter');
 var walk = document.querySelector('.walkway');
 var correctAnswer = '';
 var userAnswer = '';
-var points = 0;
-var timeLeft = 60;
+var timeLeft = 30;
 var score = 0;
 var countdownTimer;
 start.addEventListener('click', startGame);
@@ -325,13 +324,7 @@ user.forEach(function (obj) {
 });
 
 function startGame() {
-  // walk.classList.add = 'walking'
-  // console.log(walk.classList)
-  start.style.visibility = 'hidden'; // characterSprite.style.marginTop = '5px'
-  // characterSprite.style.height = '100px'
-  // characterSprite.style.width = '100px'
-  // characterSprite.style.backgroundImage = `url('https://i.gifer.com/origin/ac/acf3abb6da430dd78cc99f925bb52d49_w200.gif')`
-
+  start.style.visibility = 'hidden'; 
   countdownTimer = setInterval(countdown, 1000);
   btn.style.visibility = 'visible';
   btn.style.opacity = 0.5;
@@ -343,6 +336,7 @@ function countdown() {
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p class='score'>Your score is ".concat(score, "!</p>");
     clearTimeout(countdownTimer);
+    start.style.visbility = 'visible';
     timer.remove();
     check.remove(); //disables check answer button
 
@@ -435,7 +429,7 @@ function nextQuestion() {
   btn.style.opacity = 0.5;
   check.style.opacity = 1;
   btn.disabled = true; //disables this button
-
+  start.style.visibility = 'visible';
   check.disabled = false; //enables check answer button
 
   function getRandomQuestion(arr) {
