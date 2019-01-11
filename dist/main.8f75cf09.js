@@ -306,8 +306,7 @@ var timer = document.querySelector('.counter');
 var walk = document.querySelector('.walkway');
 var correctAnswer = '';
 var userAnswer = '';
-var points = 0;
-var timeLeft = 60;
+var timeLeft = 30;
 var score = 0;
 var countdownTimer;
 start.addEventListener('click', startGame);
@@ -343,10 +342,10 @@ function countdown() {
     var theQuestion = document.querySelector('.question-box');
     theQuestion.innerHTML = "<h1>You've completed the quiz!</h1><p class='score'>Your score is ".concat(score, "!</p>");
     clearTimeout(countdownTimer);
-    timer.remove();
-    check.remove(); //disables check answer button
+    timer.style.visibility = 'hidden';
+    check.style.visbility = 'hidden'; //disables check answer button
 
-    btn.remove(); //disables this button
+    btn.style.visibility = 'hidden'; //disables this button
 
     user.forEach(function (value) {
       return value.style.visibility = 'hidden';
@@ -360,11 +359,13 @@ function countdown() {
 }
 
 function checkAnswer() {
+  var theQuestion = document.querySelector('.question-box');
+
   if (userAnswer === correctAnswer) {
+    theQuestion.innerHTML = "<h1>Correct!</h1>";
     score += timeLeft;
-    console.log(score);
   } else {
-    console.log('WRONG');
+    theQuestion.innerHTML = "<h1>WRONG!</h1>";
   }
 
   user.forEach(function (obj) {
@@ -486,7 +487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60260" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52953" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

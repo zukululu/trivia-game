@@ -272,8 +272,7 @@ let timer = document.querySelector('.counter')
 let walk = document.querySelector('.walkway')
 let correctAnswer = ''
 let userAnswer = ''
-let points = 0
-let timeLeft = 60
+let timeLeft = 30
 let score = 0;
 let countdownTimer
 start.addEventListener('click', startGame)
@@ -311,9 +310,9 @@ function countdown()
         let theQuestion = document.querySelector('.question-box')
         theQuestion.innerHTML = `<h1>You've completed the quiz!</h1><p class='score'>Your score is ${score}!</p>`
         clearTimeout(countdownTimer)
-        timer.remove()
-        check.remove()                                       //disables check answer button
-        btn.remove()                                         //disables this button
+        timer.style.visibility = 'hidden'
+        check.style.visbility = 'hidden'                                       //disables check answer button
+        btn.style.visibility = 'hidden'                                         //disables this button
         user.forEach( value => value.style.visibility = 'hidden')   //hides choices
         return                                                      //ends function
     } else {
@@ -323,12 +322,13 @@ function countdown()
 }
 
 function checkAnswer() 
-{
+{        
+    let theQuestion = document.querySelector('.question-box')
     if(userAnswer === correctAnswer) {
+        theQuestion.innerHTML = `<h1>Correct!</h1>`
         score += timeLeft
-        console.log(score)
     } else {
-        console.log('WRONG')
+        theQuestion.innerHTML = `<h1>WRONG!</h1>`
     }
     user.forEach( (obj) => {
         obj.style.opacity = 0.5
