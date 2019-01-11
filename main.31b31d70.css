@@ -13,11 +13,19 @@ body {
   background-image: url("https://supermarioparty.nintendo.com/assets/img/global/logo-smp.png");
   background-size: contain;
   background-repeat: no-repeat;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 h1 {
   margin-top: 10px;
   margin-bottom: 0px;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 .question-box {
@@ -45,6 +53,10 @@ h1 {
   letter-spacing: 1px;
   font-family: "Staatliches";
   background-color: white;
+  text-shadow: -1px -1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  1px 1px 0 #000;
 }
 
 .container {
