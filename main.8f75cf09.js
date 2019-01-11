@@ -306,7 +306,7 @@ var timer = document.querySelector('.counter');
 var walk = document.querySelector('.walkway');
 var correctAnswer = '';
 var userAnswer = '';
-var timeLeft = 30;
+var timeLeft = 60;
 var score = 0;
 var countdownTimer;
 start.addEventListener('click', startGame);
@@ -353,12 +353,13 @@ function countdown() {
 }
 
 function checkAnswer() {
-  if (userAnswer === correctAnswer) {
-    score += timeLeft;
-    console.log(score);
-  } else {
-    console.log('WRONG');
-  }
+    let theQuestion = document.querySelector('.question-box')
+    if(userAnswer === correctAnswer) {
+        theQuestion.innerHTML = `<h1>Correct!</h1>`
+        score += timeLeft
+    } else {
+        theQuestion.innerHTML = `<h1>WRONG!</h1>`
+    }
 
   user.forEach(function (obj) {
     obj.style.opacity = 0.5;
