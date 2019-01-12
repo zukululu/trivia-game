@@ -355,10 +355,10 @@ function countdown() {
 function checkAnswer() {
     let theQuestion = document.querySelector('.question-box')
     if(userAnswer === correctAnswer) {
-        theQuestion.innerHTML = `<h1>Correct!</h1>`
+        theQuestion.innerHTML = `Correct!`
         score += timeLeft
     } else {
-        theQuestion.innerHTML = `<h1>WRONG!</h1>`
+        theQuestion.innerHTML = `WRONG!`
     }
 
   user.forEach(function (obj) {
